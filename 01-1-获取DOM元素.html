@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>获取DOM元素</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: skyblue;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">你好</div>
+    <ul class="nav">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+
+    <script>
+        const div = document.querySelector('.box')
+        console.log(div)
+        
+        const lis = document.querySelectorAll('.nav li')
+        console.log(lis[0])
+        console.log(lis[1])
+        console.log(lis[2])
+    </script>
+</body>
+</html>
