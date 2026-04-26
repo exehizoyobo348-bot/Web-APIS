@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>通过类名修改样式</title>
+    <style>
+        .nav {
+            color: skyblue;
+            font-size: 30px;
+        }
+
+        .box {
+            margin: 0 auto;
+            width: 200px;
+            height: 200px;
+            background-color: orange;
+            border: 2px solid skyblue;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">123</div>
+
+    <script>
+        const div = document.querySelector('.nav')
+        div.className = 'nav box'
+    </script>
+</body>
+</html>

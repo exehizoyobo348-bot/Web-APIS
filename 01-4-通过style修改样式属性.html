@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>通过style修改样式属性</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: skyblue;
+            background-image: url(./images/5.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+
+    <script>
+        function getnum(M, N) {
+            let num = Math.floor(Math.random() * (M - N + 1)) + N
+            return num
+        }
+        let jg = getnum(11, 1)
+
+
+        const box = document.querySelector('.box')
+        box.style.width = '200px'
+        box.style.border = '2px solid black'
+        box.style.backgroundImage = `url(./images/${jg}.png)`
+    </script>
+</body>
+</html>

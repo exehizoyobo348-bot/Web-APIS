@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM修改元素内容</title>
+</head>
+<body>
+    <div class="box">五虎战力排行</div>
+    <h3>战力第一：赵云</h3>
+    <h4>战力第二：关羽</h4>
+    <h5>战力第三：张飞</h5>
+    <script>
+        // // 1.获取标签
+        // const box = document.querySelector('.box')
+        // // 2.修改标签
+        // box.innerText = '我喜欢小轩轩'
+        // // 3.增加html标签
+        // box.innerHTML = '<strong>我喜欢谢语轩</strong>'
+
+        const arr = ['关羽', '张飞', '黄忠', '赵云', '马超']
+        
+        const jg = num = Math.floor(Math.random() * arr.length)
+        let h3 = document.querySelector('h3')
+        h3.innerText = `战力第一：${arr[jg]}`
+        arr.splice(jg, 1)
+        console.log(arr);
+        
+
+        const jg1 = num = Math.floor(Math.random() * arr.length)
+        let h4 = document.querySelector('h4')
+        h4.innerHTML = `战力第二：${arr[jg1]}`
+        arr.splice(jg1, 1)
+
+        const jg2 = num = Math.floor(Math.random() * arr.length)
+        let h5 = document.querySelector('h5')
+        h5.innerHTML = `战力第三：${arr[jg2]}`
+        
+    </script>
+</body>
+</html>

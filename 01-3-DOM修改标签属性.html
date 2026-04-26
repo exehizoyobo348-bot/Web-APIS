@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>修改属性</title>
+</head>
+<body>
+    <img src="./images/1.png" alt="">
+    <script>
+        // const images = ['./images/5.jpg', './images/2.jpg', './images/3.jpg', './images/4.jpg', './images/6.jpg']
+        // let num = Math.floor(Math.random() * images.length)
+        // const img = document.querySelector('img')
+        // img.src = `${images[num]}`
+        // img.title = '这是一张图片' 
+
+        function getnum(M, N) {
+            let num = Math.floor(Math.random() * (M - N + 1)) + N
+            return num
+        }
+        let jg = getnum(11, 1)
+
+        const images = document.querySelector('img')
+        images.src = `./images/${jg}.png`
+    </script>
+</body>
+</html>

@@ -13,6 +13,7 @@
     </style>
 </head>
 <body>
+    <p id="d">导航栏</p>
     <div class="box">你好</div>
     <ul class="nav">
         <li>1</li>
@@ -25,9 +26,12 @@
         console.log(div)
         
         const lis = document.querySelectorAll('.nav li')
-        console.log(lis[0])
-        console.log(lis[1])
-        console.log(lis[2])
+        for(let i = 0; i < lis.length; i++) {
+            lis[i].style.color = 'green'
+        }
+        const p = document.querySelector('#d')
+        console.log(p);
+        p.style.color = 'red'
     </script>
 </body>
 </html>
