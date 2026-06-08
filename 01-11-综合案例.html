@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轮播图案例</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .head {
+            margin: 100px auto;
+            width: 350px;
+            height: 250px;
+            background-color: pink;
+        }
+
+        .pic {
+            width: 350px;
+            height: 200px;
+            background-color: green;
+        }
+
+        .pic img {
+            display: block;
+            width: 350px;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .tex {
+            height: 50px;
+            font-size: 13px;
+            color: #000;
+        }
+
+        .tex .top {
+            display: flex;
+            height: 20px;
+        }
+
+        .tex .top .left {
+            flex: 1;
+        }
+
+        .tex .top .right {
+            margin-right: 8px;
+        }
+
+       .tex .bottom {
+        height: 30px;
+       }
+
+       .tex .bottom ul {
+        display: flex;
+       }
+
+       .tex .bottom li {
+        margin-top: 15px;
+        margin-right: 6px;
+        width: 6px;
+        height: 6px;
+        background-color: rgba(225, 225, 225, 0.9);
+        border-radius: 50%;
+       }
+
+       .head .bottom .active {
+        margin-top: 14px;
+        width: 8px;
+        height: 8px;
+        background-color: #fff;
+       }
+    </style>
+</head>
+<body>
+    <div class="head">
+            <div class="pic"><img src="./images/7.png" alt=""></div>
+            <div class="tex" style="background-color: rgba(100, 67, 68);">
+                <div class="top">
+                    <div class="left">对人类来说会不会太超前了！</div>
+                    <div class="right">1</div>
+                </div>
+                <div class="bottom">
+                    <ul>
+                        <li class="active"></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </div>
+            </div>
+    </div>
+
+    <script>
+        const arr = [
+            {url:'./images/7.png', title:'对人类来说是不是太超前了！', color:'rgba(100, 142, 68)'},
+            {url:'./images/8.png', title:'对人类来23说是不是太超前了！', color:'rgba(10, 99, 68)'},
+            {url:'./images/9.png', title:'对人类来说4是不是太超前了！', color:'rgba(130, 23, 68)'},
+            {url:'./images/10.png', title:'对人类来说是14不是太超前了！', color:'rgba(140, 189, 68)'},
+            {url:'./images/13.png', title:'对人类来说是不是太5超前了！', color:'rgba(100, 129, 68)'},
+            {url:'./images/14.png', title:'对人类来说是15不是太超前了！', color:'rgba(100, 223, 68)'},
+            {url:'./images/15.png', title:'对人类来说是不是24太超前了！', color:'rgba(100, 29, 68)'}
+        ]
+
+       const img = document.querySelector('.head .pic img')
+       const p = document.querySelector('.head .top .left')
+       const color = document.querySelector('.head .tex')
+      
+       let sum = 0
+       setInterval(function () {
+
+        sum++
+        if(sum === arr.length) {
+        sum = 0
+       }
+        img.src = arr[sum].url
+        p.innerHTML = arr[sum].title
+        color.style.backgroundColor = arr[sum].color
+
+        document.querySelector('.head .tex .bottom .active').classList.remove('active')
+        document.querySelector(`.head .tex .bottom li:nth-child(${sum + 1})`).classList.add('active')
+       }, 1200)
+
+      
+    </script>
+</body>
+</html>

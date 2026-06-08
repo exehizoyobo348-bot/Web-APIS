@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>随机点名案例</title>
+    <style>
+        .box {
+            width: 400px;
+            height: 200px;
+            background-color: yellow;
+            margin: 100px auto;
+            text-align: center;
+        }
+
+        .box .an {
+            margin-top: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        .box .an button {
+            display: block;
+            width: 80px;
+            height: 40px;
+        }
+
+        .box h3 {
+            padding-top: 20px;
+            height: 30px;
+        }
+
+        .box p {
+            padding-top: 10px;
+            margin-right: 280px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h3>随机点名</h3>
+        <p>姓名：姜维</p>
+        <div class="an">
+            <button class="one">开始</button>
+            <button class="two">结束</button>
+        </div>
+    </div>
+
+    <script>
+        const arr = ['关羽', '张飞', '马超', '黄忠', '赵云', '曹操', '钟士季', '姜维', '诸葛亮', '郭嘉', '贾诩', '典韦', '孙权', '袁术', '诸葛瞻']
+        console.log(arr.length)
+        const jg = document.querySelector('.box p')
+         
+        const one = document.querySelector('.box .an .one')
+        const two = document.querySelector('.box .an .two')
+        one.addEventListener('click', function () {
+          let sm = setInterval(function () {
+            const sum = Math.floor(Math.random() * arr.length)
+            jg.innerHTML = `姓名：${arr[sum]}`
+
+            two.addEventListener('click', function () {
+            jg.innerHTML = `姓名：${arr[sum]}`
+            clearInterval(sm)
+            })
+          }, 100)
+        })
+       
+        
+       
+    </script>
+</body>
+</html>

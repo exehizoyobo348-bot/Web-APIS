@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>loading</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f3f3f3;
+        }
+
+        .box {
+            position: relative;
+            margin: 100px auto;
+            width: 1200px;
+            height: 800px;
+            background-color: #fff;
+        }
+
+        h2 {
+            padding-top: 20px;
+            margin-left: 30px;
+        }
+
+        form {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 410px;
+            /* background-color: skyblue; */
+            border: 1px solid #17bb9b;
+        }
+
+        .xz {
+            margin-top: 18px;
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        .xz a {
+            display: block;
+            height: 35px;
+            line-height: 35px;
+            text-decoration: none;
+            color: #000;
+            font-size: 18px;
+        }
+
+        .xz a:first-child {
+            margin-right: 80px;
+        }
+
+        .xz a:nth-child(2) {
+            margin-left: 80px;
+        }
+
+        .xz .active {
+            border-bottom: 2px solid #17bb9b;
+        }
+
+        .userload {
+            width: 345px;
+            height: 430px;
+            /* background-color: green; */
+            margin-left: 26px;
+        }
+
+        .userload  span{
+            display: block;
+            font-size: 14px;
+            text-align: right;
+            color: #17bb9b;
+            cursor: pointer;
+        }
+
+        /* 用户名区域 */
+        .user {
+            margin-top: 30px;
+            width: 345px;
+            height: 40px;
+            background-color: yellow;
+        }
+
+        .user input {
+            display: block;
+            border: 1px solid #17bb9b;
+            width: 345px;
+            height: 40px;
+            outline: none;
+        }
+
+        .user input::placeholder {
+            padding-left: 8px;
+        }
+
+
+        /* 密码区域 */
+        .ps {
+            margin-top: 30px;
+            width: 345px;
+            height: 40px;
+            background-color: yellow;
+            /* margin-left: 22px; */
+        }
+
+        .ps input {
+            display: block;
+            border: 1px solid #17bb9b;
+            width: 345px;
+            height: 40px;
+            outline: none;
+        }
+
+        .ps input::placeholder {
+            padding-left: 8px;
+        }
+
+        /* 服务协议区域 */
+        .xy {
+            margin-top: 30px;
+            margin-left: 37px;
+        }
+
+        .xy a {
+            text-decoration: none;
+        }
+
+        /* 登陆区域 */
+        button {
+            cursor: pointer;
+            margin-top: 40px;
+            /* margin-left: 22px; */
+            width: 345px;
+            height: 40px;
+            background-color: #17bb9b;
+            color: #fff;
+            border: 0;
+        }
+
+        /* 其他区域 */
+        .qt {
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .qt a {
+            display: block;
+            text-decoration: none;
+            color: #000;
+        }
+
+        /* 二维码登录  */
+         /* .ew {
+            width: 345px;
+            height: 430px;
+            /* background-color: green; */
+            /* margin-left: 26px;
+        } */
+
+        .userload img {
+            margin-left: 72px;
+            margin-top: 50px;
+            width: 200px;
+            height: 200px;
+        }
+
+        .userload p {
+            margin-left: 102px;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>用户登录</h2>
+        <form action="" autocomplete="off">
+            <div class="xz">
+                <a href="#" class="active" data-id="0">账户设置</a>
+                <a href="#" data-id="1">二维码登录</a>
+            </div>
+
+            <!-- 密码登录区域 -->
+            <div class="userload">
+                <span>手机验证码登录</span>
+                <!-- 用户名称 -->
+                <div class="user">
+                    <input required type="text" placeholder="请输入用户名/手机号码">
+                </div>
+
+                <!-- 密码 -->
+                <div class="ps">
+                    <input required type="password">
+                </div>
+
+                <!-- 同意协议 -->
+                <div class="xy">
+                    <input type="checkbox">
+                    <i>我已同意<a href="#">《服务协议》</a>和<a href="#">《服务条款》</a></i>
+                </div>
+
+                <!-- 登录区 -->
+                <button>登录</button>
+
+                <!-- 其他区 -->
+                <div class="qt">
+                    <a href="#">忘记密码？</a>
+                    <a href="#" class="zc">免费注册</a>
+                </div>
+            </div>
+
+            <!-- 二维码登录区域 -->
+            <div class="userload" style="display: none;">
+                <img src="./images/16.jpg">
+                <p>请用91APP扫码登录</p>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const xz = document.querySelector('.xz')
+        const userload = document.querySelectorAll('.userload')
+
+        // 切换tab栏
+        xz.addEventListener('click', function (e) {
+            if (e.target.tagName === 'A') {
+                // 取消上一个active
+                // 当前元素添加
+                xz.querySelector('.active').classList.remove('active')
+                e.target.classList.add('active')
+
+                // 隐藏未选择的盒子
+                for (let i = 0; i < userload.length; i++) {
+                    userload[i].style.display = 'none'
+                }
+                
+                // 留下点击的盒子
+                userload[e.target.dataset.id].style.display = 'block'
+            }
+        })
+
+        // 表单提交
+        const form = document.querySelector('form')
+        const cb = document.querySelector('.xy input')
+        form.addEventListener('submit', function (e) {
+            if (!cb.checked) {
+                alert('请勾选同意协议')
+                e.preventDefault()
+                return false
+            }
+            this.reset()
+        })
+    </script>
+</body>
+</html>

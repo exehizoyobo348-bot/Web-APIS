@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>发表评论案例</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .pl {
+            position: relative;
+            display: flex;
+            width: 508px;
+            height: 50px;
+            /* background-color: skyblue; */
+        }
+
+        .pl .pic {
+            width: 50px;
+            height: 50px;
+            background-image: url(./images/1.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            margin-right: 10px;
+        }
+
+        .pl textarea {
+            border-radius: 2%;
+            display: block;
+            transform: translateY(33%);
+            width: 400px;
+            height: 30px;
+            transition: all .1s;
+        }
+
+        .pl textarea:focus {
+            height: 50px;
+        }
+
+        .pl .fb {
+            border-radius: 20%;
+            font-size: 13px;
+            margin-left: 8px;
+            text-align: center;
+            line-height: 30px;
+            width: 30px;
+            height: 30px;
+            background-color: skyblue;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        .pl .zs {
+            position: absolute;
+            bottom: -45px;
+            right: 29px;
+            font-size: 10px;
+            width: 50px;
+            height: 30px;
+            /* background-color: yellow; */
+            opacity: 0;
+            transition: all 1s;
+        }
+
+        /* 言论 */
+        .yl {
+            margin-top: 20px;
+            display: flex;
+            height: 130px;
+            width: 510px;
+            border-bottom: 1px dashed deeppink;
+            /* background-color: skyblue; */
+            display: none;
+            
+        }
+
+        .yl .lf {
+            margin-top: 8px;
+            margin-right: 12px;
+            width: 50px;
+            height: 50px;
+            /* background-color: pink; */
+        }
+
+        .yl .rg {
+            margin-top: 8px;
+        }
+
+        .yl .rg h5 {
+            color: deeppink;
+            margin-bottom: 4px;
+        }
+
+        .yl .rg p {
+            font-size: 14px;
+        }
+
+        .yl .rg .sj {
+            margin-top: 6px;
+            font-size: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="pl">
+        <div class="pic"></div>
+        <textarea name="" id="tx" placeholder="发表友善的评论吧" maxlength="200"></textarea>
+        <div class="fb">发布</div>
+        <div class="zs">0/200字</div>
+    </div>
+
+    <div class="yl">
+        <div class="lf"></div>
+        <div class="rg">
+            <h5>笑嘻嘻</h5>
+            <p>开兴</p>
+            <p class="sj">2021-10-10 20:29:21</p>
+        </div>
+    </div>
+    <script>
+        let str = 0
+
+        const tx = document.querySelector('#tx')
+        const zs = document.querySelector('.pl .zs')
+        tx.addEventListener('focus', function () {
+            zs.style.opacity = 1
+        })
+
+        tx.addEventListener('blur', function () {
+            zs.style.opacity = 0
+        })
+
+        
+        tx.addEventListener('input', function () {
+            str = tx.value
+            zs.innerHTML = `${tx.value.length}/200字`
+        })
+
+
+        const hd = document.querySelector('.yl .rg p')
+        const fb = document.querySelector('.pl .fb')
+        const yl = document.querySelector('.yl')
+        fb.addEventListener('click', function () {
+            hd.innerHTML = `${str}`
+            yl.style.display = 'block'
+        })
+
+        tx.addEventListener('keyup', function (e) {
+            if(e.key === 'Enter') {
+                if(tx.value.trim() !== '') {
+                    hd.innerHTML = `${str}`
+                    yl.style.display = 'block'
+                }
+                // 按下回车清空文本域
+                tx.value = ''
+                // 按下回车之后就要把字符统计清空
+                zs.innerHTML = '0/200字'
+            }
+        })
+    </script>
+</body>
+</html>

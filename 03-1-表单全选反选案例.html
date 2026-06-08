@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全选反选案例</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+       table {
+        border-collapse: collapse;
+        width: 400px;
+       }
+
+       td,th {
+        border: 1px solid #000;
+        padding: 6px 10px;
+        text-align: center;
+       }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <th><input type="checkbox" id="one" >全选</th>
+            <th>商品</th>
+            <th>商家</th>
+            <th>价格</th>
+        </tr>
+        <tr>
+            <td><input type="checkbox" class="ck"></td>
+            <td>香蕉</td>
+            <td>香蕉超市</td>
+            <td>3/斤</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" class="ck"></td>
+            <td>香蕉</td>
+            <td>香蕉超市</td>
+            <td>3/斤</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" class="ck" ></td>
+            <td>香蕉</td>
+            <td>香蕉超市</td>
+            <td>3/斤</td>
+        </tr>
+    </table>
+
+    <script>
+        const oen = document.querySelector('#one')
+        const inps = document.querySelectorAll('td .ck')
+        // 全选按钮
+        oen.addEventListener('click', function () {
+            for(let i = 0; i < inps.length; i++) {
+                inps[i].checked = this.checked
+            }
+        })
+
+        // 单选按钮
+        for(let i = 0; i < inps.length; i++) {
+           inps[i].addEventListener('click', function () {
+             oen.checked = document.querySelectorAll('.ck:checked').length === inps.length
+           })
+        }
+    </script>
+</body>
+</html>

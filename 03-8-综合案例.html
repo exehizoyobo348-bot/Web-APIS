@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新闻案例</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .head {
+            position: fixed;
+            top: 0px;
+            left: 0;
+            line-height: 50px;
+            text-align: center;
+            width: 100%;
+            height: 50px;
+            background-color: skyblue;
+            transition: all 1s;
+            z-index: 3;
+        }
+
+        .st {
+            position: relative;
+            margin: 0px auto;
+            width: 1200px;
+            height: 3000px;
+            background-color: pink;
+        }
+
+        .st .ms {
+            position: absolute;
+            top: 400px;
+            width: 200px;
+            height: 200px;
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="head">我是顶部</div>
+    <div class="st">
+        <p class="ms">秒杀区域</p>
+    </div>
+
+    <script>
+        const head = document.querySelector('.head')
+        const st = document.querySelector('.st')
+        const ms = document.querySelector('.st .ms')
+
+        window.addEventListener('scroll', function () {
+            // head.style.top = document.documentElement.scrollTop >= ms.offsettop ? 0 : -50 + 'px'
+            const n = document.documentElement.scrollTop
+            if(n >= ms.offsettop) {
+                head.style.top = 0
+            } else {
+                head.style.top = '-50px'
+            }
+        })
+    </script>
+</body>
+</html>

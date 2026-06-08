@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>综合案例</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        li {
+            list-style: none;
+        }
+
+        h1 {
+            width: 1200px;
+            height: 60px;
+            margin: 20px auto;
+            line-height: 60px;
+            text-align: center;
+        }
+
+       .sj {
+        width: 1200px;
+        height: 50px;
+        margin: 0 auto;
+       }
+
+       .info {
+        margin-left: 320px;
+       }
+
+       .info input {
+        border-radius: 0;
+        border: 1px solid #000;
+        width: 80px;
+        height: 25px;
+        margin-right: 18px;
+        outline: none;
+       }
+
+       .info input::placeholder {
+        padding-left: 4px;
+       }
+
+       .info select {
+        border-radius: 0;
+        border: 1px solid #000;
+        width: 80px;
+        height: 25px;
+        margin-right: 18px;
+        outline: none;
+       }
+
+       .info button {
+        width: 50px;
+        height: 25px;
+        background-color: skyblue;
+        border-radius: 0;
+        border: 0;
+        font-size: 12px;
+        color: #fff;
+        cursor: pointer;
+       }
+
+       p {
+        margin: 0 auto;
+        width: 700px; 
+        height: 40px;
+        background-color: #f3f3f3;
+        text-align: end;
+        line-height: 40px;
+       }
+
+       p span {
+        color: orange;
+       }
+
+       table {
+        margin: 10px auto;
+        width: 700px;
+        height: 80px;
+        border-collapse: collapse;
+       }
+
+       th,td {
+        border: 1px solid #000;
+        padding: 6px 10px;
+        text-align: center;
+       }
+
+       a {
+        display: inline-block;
+        width: 80px;
+        height: 40px;
+        background-color: orange;
+        color: #fff;
+        border-radius: 2px;
+        line-height: 40px;
+        text-decoration: none;
+       }
+    </style>
+</head>
+<body>
+    <h1>学生就业统计表</h1>
+
+    <div class="sj">
+        <form class="info" autocomplete="off">
+            <input type="text" name="uname" class="uname" placeholder="姓名">
+            <input type="text" name="age" class="age" placeholder="年龄">
+            <input type="text" name="salary" class="salary" placeholder="薪资">
+            <select name="gender" class="gender">
+                <option>男</option>
+                <option>女</option>
+            </select>
+            <select name="city" class="city" >
+                <option>北京</option>
+                <option>北京</option>
+                <option>北京</option>
+                <option>北京</option>
+                <option>北京</option>
+                <option>北京</option>
+                <option>北京</option>
+            </select>
+            <button>添加</button>
+        </form>
+    </div>
+
+    <p>共<span class="ts">0</span>条数据</p>
+
+    <table class="tbody">
+        <!-- <tr>
+            <td>1</td>
+            <td>小红</td>
+            <td>19</td>
+            <td>12000</td>
+            <td>北京</td>
+            <td>2026.3.17</td>
+            <td><button>删除</button></td>
+        </tr> -->
+        
+    </table>
+
+    <script>
+        const arr = []
+        const uname = document.querySelector('.sj .uname')
+        const age = document.querySelector('.sj .age')
+        const salary = document.querySelector('.sj .salary')
+        const gender = document.querySelector('.sj .gender')
+        const city = document.querySelector('.sj .city')
+        const span = document.querySelector('.ts')
+        // 获取所有带有name属性的元素
+        const items = document.querySelectorAll('[name]')
+        
+
+        // 新增数据
+        // 1.1表单提交
+        const info = document.querySelector('.sj .info')
+        info.addEventListener('submit', function (e) {
+            // 阻止默认行为
+            e.preventDefault()
+
+            // 验证表单是否正确
+            for (let i = 0; i < items.length; i++) {
+                if (items[i].value === '') {
+                    alert('请输入正确信息！！！')
+                    return
+                }
+            }
+
+            // 追加数据
+            const obj = {
+                id: arr.length + 1,
+                uname: uname.value,
+                age: age.value,
+                salary: salary.value,
+                gender: gender.value,
+                city: city.value
+            }
+            arr.push(obj)
+
+            // 清空表单输入框的内容
+            this.reset()
+            // dioayon
+            render()
+
+           
+        })
+
+        // 封装内容渲染函数
+        const tb = document.querySelector('.tbody')
+        function render() {
+            // 先清空tbody
+            tb.innerHTML = ''  // 清空以前的行
+
+            for(let i = 0; i < arr.length; i++) {
+                const tr = document.createElement('tr')
+                tr.innerHTML = `
+                    <td>${arr[i].id}</td>
+                    <td>${arr[i].uname}</td>
+                    <td>${arr[i].age}</td>
+                    <td>${arr[i].salary}</td>
+                    <td>${arr[i].city}</td>
+                    <td>2026</td>
+                    <td>
+                        <a href="javascript:" data-id=${i}>删除</a>
+                    </td>
+                `
+
+                // 追加tr
+                tb.appendChild(tr)
+
+                // 动态数字变化
+                span.innerHTML = `${arr.length}`
+            }
+        }
+
+        // 删除模块
+        tb.addEventListener('click', function (e) {
+            if (e.target.tagName === 'A') {
+                // 删除arr数组对应的数据
+                const xh = e.target.dataset.id
+                arr.splice(xh, 1)
+                render()
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件监听</title>
+    <link rel="stylesheet" href="./iconfont/iconfont.css">
+    <style>
+        .box {
+            position: relative;
+            width: 350px;
+            height: 100px;
+            background-color: skyblue;
+            line-height: 100px;
+            text-align: center;
+        }
+
+       .box .bx {
+        font-size: 13px;
+        position: absolute;
+        right: 4px;
+        top: 2px;
+        width: 23px;
+        height: 23px;
+        background-color: yellow;
+        text-align: center;
+        line-height: 23px;
+        border-radius: 50%;
+        cursor: pointer;
+       }
+      
+    </style>
+</head>
+<body>
+    <div class="box">
+        <p>我是广告</p>
+        <div class="bx iconfont icon-quxiao"></div>
+    </div>
+    <div class="box">
+        <p>我是广告</p>
+        <div class="bx iconfont icon-quxiao"></div>
+    </div>
+    <div class="box">
+        <p>我是广告</p>
+        <div class="bx iconfont icon-quxiao"></div>
+    </div>
+   
+    <script>
+        // const p = document.querySelector('.box .bx')
+        // p.addEventListener('click', function () {
+        //     // 子元素.parentNode 为该子元素的父亲元素
+        //     p.parentNode.style.display = 'none'
+        // })
+
+        const bx = document.querySelectorAll('.box .bx')
+        for(let i = 0; i < bx.length; i++) {
+            bx[i].addEventListener('click', function () {
+                this.parentNode.style.display = 'none'
+            })
+        }
+    </script>
+</body>
+</html>

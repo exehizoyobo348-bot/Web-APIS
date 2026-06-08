@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>页面滚动</title>
+    <style>
+        body {
+            height: 3000px;
+        }
+
+        div {
+            margin: 300px auto;
+            display: none;
+            overflow: scroll;
+            width: 200px;
+            height: 200px;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        这里有很多文字
+        这里有很多文字
+        这里有很多文字
+        这里有很多文字
+        这里有很多文字
+        这里有很多文字
+        这里有很多文字
+        这里有很多文字
+        这里有很多文字
+        这里有很多文字
+        这里有很多文字
+        这里有很多文字
+        这里有很多文字
+        这里有很多文字
+        这里有很多文字
+        这里有很多文字
+        这里有很多文字
+        这里有很多文字
+        这里有很多文字
+        这里有很多文字
+    </div>      
+
+    <script>
+
+        // scroll为事件   scrolltop和scrollleft为属性，就是对象里面的属性
+        // const div = document.querySelector('div')
+        // div.addEventListener('scroll', function () {
+        //     console.log(div.scrollTop)
+        // })
+
+        window.addEventListener('scroll', function () {
+            const n = document.documentElement.scrollTop
+            const div = document.querySelector('div')
+            n >= 100 ? div.style.display = 'block' : div.style.display = 'none'
+        })
+    </script>
+</body>
+</html>

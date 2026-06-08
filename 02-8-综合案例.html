@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tab栏切换</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .tb {
+            margin: 100px auto;
+            width: 800px;
+            height: 500px;
+            /* background-color: skyblue; */
+            background-color: #fff;
+        }
+
+        /* 导航部分 */
+        .tb .dh {
+            display: flex;
+            height: 50px;
+            /* background-color: pink; */
+            background-color: #f3f3f3;
+        }
+
+        .tb .dh h3 {
+            margin-top: 10px;
+            margin-left: 20px;
+            margin-right: 150px;
+        }
+
+        .tb .dh ul {
+            display: flex;
+            flex: 1;
+            /* background-color: yellow; */
+            justify-content: space-evenly;
+        }
+
+        .tb .dh li {
+            width: 80px;
+            height: 40px;
+            /* text-align: center; */
+            /* line-height: 40px; */
+            margin-top: 5px;
+            /* background-color: green; */
+            /* cursor: pointer; */
+        }
+
+        .tb .dh li a {
+            margin-top: 8px;
+            margin-left: 20px;
+            text-align: center;
+            padding-bottom: 3px;
+            display: block;
+            color: #333;
+            text-decoration: none;
+            width: 38px;
+            /* background-color: skyblue; */
+        }
+
+        .js {
+            color: red !important;
+            border-bottom: 2px solid red;
+        }
+
+        /* 内容部分 */
+        .nrl .nr {
+            background-color: #f3f3f3;
+            display: flex;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .nrl .nr .bn {
+            margin-right: 50px;
+            width: 230px;
+            height: 430px;
+            /* background-color: #fff; */
+        }
+
+        .nrl .nr .xc {
+            width: 520px;
+            height: 430px;
+            /* background-color: yellow; */
+        }
+
+        .nrl .nr .xc ul {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .nrl .nr .xc li {
+            background-color: skyblue;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            width: 250px;
+            height: 210px;
+        }
+
+        .nrl .active {
+            display: block;
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <div class="tb">
+        <div class="dh">
+            <h3>每日特价</h3>
+            <ul>
+                <li><a href="#" class="js">精选</a></li>
+                <li><a href="#">美食</a></li>
+                <li><a href="#">百货</a></li>
+                <li><a href="#">个护</a></li>
+                <li><a href="#">预告</a></li>
+            </ul>
+        </div>
+        <div class="nrl">
+            <div class="nr active">
+                <div class="bn">1</div>
+                <div class="xc">
+                    <ul>
+                        <li>1</li>
+                        <li>3</li>
+                        <li>2</li>
+                        <li>4</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="nr">
+                <div class="bn">1</div>
+                <div class="xc">
+                    <ul>
+                        <li>乐乐</li>
+                        <li>几把</li>
+                        <li>笑了</li>
+                        <li>哈哈</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="nr">
+                <div class="bn">1</div>
+                <div class="xc">
+                    <ul>
+                        <li>六六</li>
+                        <li>啊~~</li>
+                        <li>没烦恼</li>
+                        <li>笑死我了</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="nr">
+                <div class="bn">1</div>
+                <div class="xc">
+                    <ul>
+                        <li>子时</li>
+                        <li>卯时</li>
+                        <li>影视</li>
+                        <li>哈哈</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="nr">
+                <div class="bn">1</div>
+                <div class="xc">
+                    <ul>
+                        <li>胡</li>
+                        <li>3</li>
+                        <li>2</li>
+                        <li>4</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+
+    <script>
+        // a模块制作
+        const al = document.querySelectorAll('.tb .dh li a')
+        for (let i = 0; i < al.length; i++) {
+            al[i].addEventListener('mouseenter', function () {
+                // 排他思想
+                document.querySelector('.tb .dh ul .js').classList.remove('js')
+                this.classList.add('js')
+
+                // 内容部分
+                document.querySelector('.nrl .active').classList.remove('active')
+                document.querySelector(`.tb .nrl .nr:nth-child(${i + 1})`).classList.add('active')
+            })
+        }
+    </script>
+</body>
+</html>

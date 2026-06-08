@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .box {
+            margin: 100px auto;
+            width: 400px;
+            height: 200px;
+            background-color: skyblue;
+        }
+
+        .box h3 {
+            padding-top: 20px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+        }
+
+        .box p {
+            margin-top: 50px;
+            margin-left: 10px;
+            height: 25px;
+            line-height: 25px;
+        }
+
+        .box .an {
+            display: flex;
+            justify-content: space-evenly;
+            margin-top: 30px;
+        }
+
+        .box .an button {
+            display: block;
+            width: 80px;
+            height: 35px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h3>随机点名</h3>
+        <p>姓名：姜维</p>
+        <div class="an">
+            <button class="lf">开始</button>
+            <button class="rg" disabled>结束</button>
+        </div>
+    </div>
+
+    <script>
+        const arr = ['关羽', '张飞', '马超', '黄忠', '赵云', '曹操', '钟士季', '姜维', '诸葛亮', '郭嘉', '贾诩', '典韦', '孙权', '袁术', '诸葛瞻']
+        let sum = 0
+        let sm = 0
+        const p = document.querySelector('.box p')
+        const ntl = document.querySelector('.box .an .lf')
+        const ntr = document.querySelector('.box .an .rg')
+
+        ntl.addEventListener('click', function () {
+            sm = setInterval(function () {
+                sum = Math.floor(Math.random() * arr.length)
+                p.innerHTML = `姓名:${arr[sum]}`
+            }, 100)
+            ntr.disabled = false
+        })
+
+        ntr.addEventListener('click', function () {
+            clearInterval(sm)
+            ntr.disabled = true
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f3f3f3;
+        }
+
+        .box {
+            position: relative;
+            margin: 100px auto;
+            width: 1200px;
+            height: 800px;
+            background-color: #fff;
+        }
+
+        h2 {
+            padding-top: 30px;
+            padding-left: 40px;
+            font-size: 20px;
+            color: #ccc;
+        }
+
+        .box .fm {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 350px;
+            height: 550px;
+        }
+
+        .box .fm input {
+            outline: none;
+            border: 1px solid #333;
+            margin-left: 35px;
+            margin-top: 35px;
+            display: block;
+            width: 280px;
+            height: 50px;
+        }
+
+        .box .yzm {
+            width: 280px;
+            height: 50px;
+            /* background-color: green; */
+            position: relative;
+        }
+
+        .box .yzm a {
+            position: absolute;
+            right: -28px;
+            top: 14px;
+            color: #65c2ab;
+            font-size: 14px;
+            text-decoration: none;
+        }
+
+        .box .agree {
+            position: relative;
+            margin-left: 35px;
+            width: 280px;
+            height: 20px;
+            /* background-color: yellow; */
+        }
+
+        .box .agree input {
+            margin-left: 15px;
+            width: 15px;
+            height: 15px;
+        }
+
+        .box .agree span {
+            display: block;
+            position: absolute;
+            left: 40px;
+            top: -5px;
+        }
+
+        .box .agree span a {
+            text-decoration: none;
+            color: #65c2ab;
+        }
+
+        button {
+            font-size: 18px;
+            color: #fff;
+            margin-top: 20px;
+            margin-left: 35px;
+            border: 0;
+            width: 280px;
+            height: 50px;
+            background-color: #65c2ab;
+            cursor: pointer;
+        }
+
+        input::placeholder {
+            padding-left: 10px;
+        }
+
+        p{
+            /* display: none; */
+            color: red;
+            font-size: 14px;
+            margin-left: 35px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>新用户注册</h2>
+        <form action="" class="fm">
+            <!-- 有户名 -->
+           <div class="us">
+            <input type="text" name="" id=""  class="name" placeholder="输入用户名称">
+            <p></p>
+           </div>
+
+           <!-- 手机号码 -->
+           <div class="hm">
+            <input type="text" name="" id=""  class="sjhm" placeholder="输入手机号码">
+            <p></p>
+           </div>
+
+           <!-- 验证码 -->
+           <div class="yzm">
+            <input type="text" name="" id=""  class="yz" placeholder="短信验证码">
+            <p></p>
+            <a href="#">发送验证码</a>
+           </div>
+
+           <!-- 密码 -->
+           <div class="mm">
+            <input type="password" name="" id=""  class="ps" placeholder="设置密码">
+            <p></p>
+           </div>
+
+           <!-- 密码验证 -->
+           <div class="cm">
+            <input type="password" name="" id="" class="pss" placeholder="重新输入密码">
+            <p></p>
+           </div>
+
+           <!-- 用户协议 -->
+           <div class="agree">
+            <input type="checkbox" name="" id="" class="yx" >
+            <span>已阅读并同意<a href="#">《用户协议服务》</a></span>
+           </div>
+
+           <button>提交</button>
+        </form>
+    </div>
+
+    <script>
+       
+       // 验证码倒计时
+       const yzm = document.querySelector('.fm .yzm a')
+       let flag = true  // 未执行完倒计时无法继续点击发送验证码       
+
+       yzm.addEventListener('click', function () {
+        if (flag) {
+            flag = false
+            // 点击完是立马触发倒计时
+            let n = 5
+            yzm.innerHTML = `${n}秒后发送验证码`
+
+            // 计时器
+            const jsq = setInterval(function () {
+                n--
+                yzm.innerHTML = `${n}秒后发送验证码`
+                if (n === 0) {
+                    clearInterval(jsq)
+                    yzm.innerHTML = '重新获取'
+                    flag = true
+
+                }
+            }, 1000)
+        }
+       })
+
+      // 表单验证 名字区
+      const name = document.querySelector('.us .name')
+      name.addEventListener('input', vername)
+      // 定义执行函数
+      function vername() {
+        const p = document.querySelector('.us p')
+        const reg = /^[a-zA-Z0-9-_]{6,10}$/
+        // 输入不合法
+        if (!reg.test(name.value)) {
+            p.innerHTML = '输入不合法，请输入6-10位'
+            return false
+        }
+        // 输入合法
+        p.innerHTML = ''
+        return true
+      }
+
+       // 表单验证 手机号区
+      const sjh = document.querySelector('.hm .sjhm')
+      sjh.addEventListener('input', versjh)
+      // 定义执行函数
+      function versjh() {
+        const p = document.querySelector('.hm p')
+        const reg = /^1(3\d|4[5-9]|5[0-35-9]|6[567]|7[0-8]|8\d|9[0-35-9])\d{8}$/
+        // 输入不合法
+        if (!reg.test(sjh.value)) {
+            p.innerHTML = '输入不合法，请输入11位'
+            return false
+        }
+        // 输入合法
+        p.innerHTML = ''
+        return true
+      }
+
+       // 表单验证 验证码区
+      const yz = document.querySelector('.yzm .yz')
+      yz.addEventListener('input', veryz)
+      // 定义执行函数
+      function veryz() {
+        const p = document.querySelector('.yzm p')
+        const reg = /^\d{6}$/
+        // 输入不合法
+        if (!reg.test(yz.value)) {
+            p.innerHTML = '输入不合法，请输入6位数的验证码'
+            return false
+        }
+        // 输入合法
+        p.innerHTML = ''
+        return true
+      }
+
+       // 表单验证 密码区
+      const mm = document.querySelector('.mm .ps')
+      mm.addEventListener('input', vermm)
+      // 定义执行函数
+      function vermm() {
+        const p = document.querySelector('.mm p')
+        const reg = /^[a-zA-Z0-9-_]{6,20}$/
+        // 输入不合法
+        if (!reg.test(mm.value)) {
+            p.innerHTML = '输入不合法，请输入6-20位数的密码'
+            return false
+        }
+        // 输入合法
+        p.innerHTML = ''
+        return true
+      }
+
+       // 表单验证 密码验证区
+      const cm = document.querySelector('.cm .pss')
+      cm.addEventListener('input', vercm)
+      // 定义执行函数
+      function vercm() {
+        const p = document.querySelector('.cm p')
+        // 输入不合法
+        if (cm.value !== mm.value) {
+            p.innerHTML = '请输入与上面相同的密码'
+            return false
+        }
+        // 输入合法
+        p.innerHTML = ''
+        return true
+      }
+
+      // 用户协议和全部提交区
+      const form = document.querySelector('.fm')
+      const cx = document.querySelector('.agree .yx')
+      form.addEventListener('submit', function (e) {
+        if (!cx.checked) {
+            alert('请勾选同意协议')
+            // 阻止提交
+            e.preventDefault()
+        }
+
+        if (!vername()) e.preventDefault()
+        if (!versjh()) e.preventDefault()
+        if (!veryz()) e.preventDefault()
+        if (!vermm()) e.preventDefault()
+        if (!vercm()) e.preventDefault()
+
+        // 提交后全部清空
+        this.reset()
+      })
+    </script>
+</body>
+</html>

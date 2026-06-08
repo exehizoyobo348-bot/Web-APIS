@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>增加节点</title>
+</head>
+<body>
+    <ul>
+        <li>我是老大</li>
+    </ul>
+
+    <script>
+        const li = document.createElement('li')
+        const ul = document.querySelector('ul')
+        li.innerHTML = '我是li'
+        // 1.增加节点，但增加元素的位置永远时父级的末尾位置
+        // ul.appendChild(li)
+        // 2.增加节点，可以指定增加元素的位置
+        ul.insertBefore(li, ul.children[0])
+    </script>
+</body>
+</html>

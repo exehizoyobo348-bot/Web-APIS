@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>时间倒计时</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .box {
+            margin: 200px auto;
+            width: 230px;
+            height: 260px;
+            background-color: skyblue;
+        }
+
+        .box p {
+            margin-left: 15px;
+            transform: translateY(15px);
+            text-align: center;
+            color: #fff;
+            font-size: 14px;
+            width: 200px;
+            height: 20px;
+            /* background-color: green; */
+            
+        }
+
+        h3 {
+            color: #fff;
+            font-size: 27px;
+            width: 200px;
+            height: 60px;
+            /* background-color: yellow; */
+            margin-top: 20px;
+            margin-left: 15px;
+            line-height: 60px;
+            text-align: center;
+        }
+
+        ul {
+            color: #fff;
+            margin-top: 23px;
+            margin-bottom: 65px;
+            display: flex;
+            width: 150px;
+            height: 30px;
+            /* background-color: yellow; */
+            margin-left: 40px;
+            justify-content: space-evenly;
+        }
+
+        li {
+            width: 30px;
+            height: 30px;
+            font-size: 14px;
+            background-color: #000;
+            color: #fff;
+            line-height: 30px;
+            text-align: center;
+        }
+
+        i {
+            font-style: normal;
+        }
+
+        h4 {
+            width: 200px;
+            height: 30px;
+            margin-left: 15px;
+            line-height: 30px;
+            text-align: center;
+            color: #fff;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <p>今天是2026年5月10日</p>
+        <h3>高考倒计时</h3>
+        <ul>
+            <Li class="day">00</Li>
+            <i>:</i>
+            <Li class="hr">00</Li>
+            <i>:</i>
+            <Li class="mn">00</Li>
+            <i>:</i>
+            <Li class="ms">00</Li>
+        </ul>
+        <h4>6月7日9：00：00高考</h4>
+    </div>
+
+    <script>
+        const p = document.querySelector('p')
+        const date = new Date()
+        p.innerHTML = `今天是${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`
+
+        // 时间倒计时
+        const now = +new Date()
+        const fur = +new Date('2026-6-7 9:00:00')
+        const sy = (fur - now) / 1000
+        console.log(sy)
+        
+        let day = parseInt(sy / 60 / 60 / 24)
+        let hr = parseInt(sy / 60 / 60 % 24)
+        let mn = parseInt(sy / 60 % 60)
+        let ms = parseInt(sy % 60)
+        day = day >= 10 ? day : '0' + day
+        hr = hr >= 10 ? hr : '0' + hr
+        mn = mn >= 10 ? mn : '0' + mn
+        ms = ms >= 10 ? ms : '0' + ms
+
+        const dy = document.querySelector('.day')
+        dy.innerHTML = `${day}`
+        const xs = document.querySelector('.hr')
+        xs.innerHTML = `${hr}`
+        const fz = document.querySelector('.mn')
+        fz.innerHTML = `${mn}`
+        const mz = document.querySelector('.ms')
+        mz.innerHTML = `${ms}`
+
+        
+        setInterval(function () {
+            const now = +new Date()
+            const fur = +new Date('2026-6-7 9:00:00')
+            const sy = (fur - now) / 1000
+            console.log(sy)
+            
+            let day = parseInt(sy / 60 / 60 / 24)
+            let hr = parseInt(sy / 60 / 60 % 24)
+            let mn = parseInt(sy / 60 % 60)
+            let ms = parseInt(sy % 60)
+            day = day >= 10 ? day : '0' + day
+            hr = hr >= 10 ? hr : '0' + hr
+            mn = mn >= 10 ? mn : '0' + mn
+            ms = ms >= 10 ? ms : '0' + ms
+
+            const dy = document.querySelector('.day')
+            dy.innerHTML = `${day}`
+            const xs = document.querySelector('.hr')
+            xs.innerHTML = `${hr}`
+            const fz = document.querySelector('.mn')
+            fz.innerHTML = `${mn}`
+            const mz = document.querySelector('.ms')
+            mz.innerHTML = `${ms}`
+        }, 1000)
+    </script>
+</body>
+</html>
